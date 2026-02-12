@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestro Corazón ❤️</title>
+
+<style>
+:root {
+    --glass: rgba(255,255,255,0.15);
+    --blur: blur(12px);
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, #711c71, #2c1e2f);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+h1 {
+    margin: 20px 10px;
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+#scene {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bigHeart {
+    position: relative;
+    width: 260px;
+    height: 260px;
+
+    --heart-shape: path("M130 235 C 20 150, 40 40, 130 90 C 220 40, 240 150, 130 235 Z");
+
+    clip-path: var(--heart-shape);
+    -webkit-clip-path: var(--heart-shape);
+
+    background: rgba(255, 170, 190, 0.08);
+    backdrop-filter: blur(6px);
+    animation: pulse 3s infinite ease-in-out;
+    overflow: visible;
+
+}
+
+#bigHeart::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    clip-path: var(--heart-shape);
+    -webkit-clip-path: var(--heart-shape);
+
+    border: 2px solid rgba(255, 170, 200, 0.95);
+    filter: blur(0.4px);
+    pointer-events: none;
+    z-index: -1;
+}
+
+#bigHeart::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    animation: auraPulse 3s ease-in-out infinite;
+
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 140, 180, 0.781),
+        rgba(255,140,180,0.3),
+        transparent 100%
+    );
+
+    clip-path: var(--heart-shape);
+    filter: blur(20px);
+    z-index: -1;
+}
+
+#letter {
+    margin: 30px auto;
+    max-width: 700px;
+    padding: 25px;
+    background: var(--glass);
+    backdrop-filter: var(--blur);
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.3);
+}
+
+#counter {
+    margin-top: 20px;
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    color: #ffb6c1;
+}
+
+#musicBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--glass);
+    backdrop-filter: var(--blur);
+    border: none;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+    color: white;
+    cursor: pointer;
+}
+
+.mini-heart {
+    position: absolute;
+    color: red;
+    animation: float 6s infinite ease-in-out;
+    opacity: 0.9;
+}
+
+.falling-heart {
+    position: absolute;
+    top: -20px;
+    font-size: 18px;
+    animation: fall linear forwards;
+}
+
+.heart-glow {
+    position: relative;
+    width: 300px;
+    height: 300px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    filter:
+        drop-shadow(0 0 25px rgba(255,105,135,0.6))
+        drop-shadow(0 0 60px rgba(255,105,135,0.45))
+        drop-shadow(0 0 120px rgba(255,105,135,0.25));
+
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%,100% {
+        filter:
+            drop-shadow(0 0 25px rgba(255,105,135,0.6))
+            drop-shadow(0 0 60px rgba(255,105,135,0.45));
+    }
+    50% {
+        filter:
+            drop-shadow(0 0 40px rgba(255,105,135,0.9))
+            drop-shadow(0 0 120px rgba(255,105,135,0.6));
+    }
+}
+
+@keyframes auraPulse {
+    0%,100% { transform: scale(1); opacity: 0.9; }
+    50%     { transform: scale(1.08); opacity: 1; }
+}
+
+@keyframes pulse {
+    0%,100% {
+        transform: scale(1.25);
+        
+    }
+    50% {
+        transform: scale(1.32);
+        box-shadow:
+            0 0 0 4px rgba(255,105,135,0.9),
+            0 0 45px rgba(255,105,135,0.8);
+    }
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(600px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    #bigHeart {
+        width: 210px;
+        height: 200px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>❤️ Quieres ser mi San Valentin ❤️</h1>
+
+<div id="scene">
+    <div class="heart-glow">
+        <div id="bigHeart"></div>
+    </div>
+</div>
+
+<div id="letter">
+    <h2>Para Ti 💌</h2>
+    <p>
+        Este corazón no late solo.
+        Está hecho de cada momento, de cada risa,
+        de cada vez que elegimos quedarnos.
+    </p>  
+    <p>  
+        A veces me pongo a pensar en todo lo que significa estar contigo, 
+        y me doy cuenta de que lo nuestro no es algo común,
+        es algo que se construye con intención, 
+        con paciencia y con esfuerzo. 
+    </p>
+    <p>
+        Estar contigo, 
+        incluso a la distancia, 
+        me ha enseñado que el amor verdadero no se mide en kilómetros sino en decisiones. 
+        Y tú, 
+        todos los días, 
+        decides quedarte conmigo. 
+    </p>
+    <p>
+        No importa la distancia, 
+        ni el tiempo, 
+        ni los obstáculos. 
+        Si es contigo, 
+        siempre vale la pena.
+        Te amo.
+    </p>
+    <div id="counter"></div>
+</div>
+
+<!-- 🎵 Música -->
+<audio id="music" loop>
+    <source src="musica.mp3.m4a" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn">🎵</button>
+
+<script>
+// ❤️ Rellenar corazón con mini-corazones
+const bigHeart = document.getElementById("bigHeart");
+
+for (let i = 0; i < 350; i++) {
+    const h = document.createElement("div");
+    h.className = "mini-heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random() * 90 + "%";
+    h.style.top = Math.random() * 90 + "%";
+    h.style.fontSize = (10 + Math.random() * 14) + "px";
+    h.style.animationDuration = (3 + Math.random() * 4) + "s";
+    bigHeart.appendChild(h);
+}
+
+// 💕 Corazones cayendo
+function fallingHeart() {
+    const h = document.createElement("div");
+    h.className = "falling-heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random() * window.innerWidth + "px";
+    h.style.fontSize = (14 + Math.random() * 18) + "px";
+    h.style.animationDuration = (4 + Math.random() * 3) + "s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 7000);
+}
+setInterval(fallingHeart, 500);
+
+// ⏳ Contador
+const startDate = new Date("2024-10-29T00:00:00"); // CAMBIA AQUÍ
+
+function updateCounter() {
+    const now = new Date();
+    let diff = now - startDate;
+
+    const s = Math.floor(diff / 1000) % 60;
+    const m = Math.floor(diff / 60000) % 60;
+    const h = Math.floor(diff / 3600000) % 24;
+    const d = Math.floor(diff / 86400000);
+
+    const y = Math.floor(d / 365);
+    const mo = Math.floor((d % 365) / 30);
+    const da = (d % 365) % 30;
+
+    counter.innerHTML = `
+    Llevamos juntos:<br>
+    <strong>${y} año, ${mo} meses, ${da} días<br>
+    ${h}h ${m}m ${s}s</strong>`;
+}
+setInterval(updateCounter, 1000);
+updateCounter();
+
+// 🎵 Música
+const music = document.getElementById("music");
+const btn = document.getElementById("musicBtn");
+let playing = false;
+music.volume = 0.8;
+music.load();
+
+btn.onclick = () => {
+    if (!playing) {
+        music.play();
+        btn.textContent = "⏸️";
+    } else {
+        music.pause();
+        btn.textContent = "🎵";
+    }
+    playing = !playing;
+};
+
+</script>
+
+</body>
+</html>
