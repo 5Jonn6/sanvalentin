@@ -303,24 +303,27 @@ updateCounter();
 const music = document.getElementById("music");
 const btn = document.getElementById("musicBtn");
 let playing = false;
-music.volume = 0.8;
-music.load();
 
-btn.onclick = () => {
-    if (!playing) {
-        music.play();
-        btn.textContent = "⏸️";
-    } else {
-        music.pause();
-        btn.textContent = "🎵";
-    }
-    playing = !playing;
-};
+btn.addEventListener("click", () => {
+  if (!playing) {
+    music.play().then(() => {
+      btn.textContent = "⏸️";
+      playing = true;
+    }).catch(err => {
+      console.log("Error al reproducir:", err);
+    });
+  } else {
+    music.pause();
+    btn.textContent = "🎵";
+    playing = false;
+  }
+});
 
 </script>
 
 </body>
 </html>
+
 
 
 
